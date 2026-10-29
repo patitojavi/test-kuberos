@@ -24,13 +24,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Lowercase repository owner
-        id: owner
-        run: echo "lc=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_OUTPUT"
-
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           context: ./client
           push: true
-          tags: ghcr.io/${{ steps.owner.outputs.lc }}/kubero-demo-todo-client:latest
+          tags: ghcr.io/patitojavi/kubero-demo-todo-client:latest
+          labels: |
+            org.opencontainers.image.source=https://github.com/patitojavi/test-kuberos
