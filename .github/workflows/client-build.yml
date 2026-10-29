@@ -1,11 +1,11 @@
-name: Build server image
+name: Build client image
 
 on:
   push:
     branches: [main]
     paths:
-      - 'server/**'
-      - '.github/workflows/server-build.yml'
+      - 'client/**'
+      - '.github/workflows/client-build.yml'
   workflow_dispatch:
 
 jobs:
@@ -31,6 +31,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: ./server
+          context: ./client
           push: true
-          tags: ghcr.io/${{ steps.owner.outputs.lc }}/test-kuberos-server:latest
+          tags: ghcr.io/${{ steps.owner.outputs.lc }}/kubero-demo-todo-client:latest
